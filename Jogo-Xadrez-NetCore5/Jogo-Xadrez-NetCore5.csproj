@@ -6,4 +6,8 @@
     <RootNamespace>Jogo_Xadrez_NetCore5</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Xadrez.Tabuleiro\Xadrez.Tabuleiro.csproj" />
+  </ItemGroup>
+
 </Project>

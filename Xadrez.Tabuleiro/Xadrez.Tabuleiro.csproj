@@ -1,13 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Jogo-Xadrez-NetCore5\Jogo-Xadrez-NetCore5.csproj" />
-    <ProjectReference Include="..\Xadrez.Exceptions\Xadrez.Exceptions.csproj" />
-    <ProjectReference Include="..\Xadrez.Pecas\Xadrez.Pecas.csproj" />
-  </ItemGroup>
 
 </Project>
