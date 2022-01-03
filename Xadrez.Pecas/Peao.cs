@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Xadrez.Tabuleiro;
 
 namespace Xadrez.Pecas
 {
-    internal class Peao
+    public class Peao : Peca
     {
+        public Peao(Tabuleiro.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
+        {
+        }
+        public override string ToString()
+        {
+            return "P";
+        }
     }
 }

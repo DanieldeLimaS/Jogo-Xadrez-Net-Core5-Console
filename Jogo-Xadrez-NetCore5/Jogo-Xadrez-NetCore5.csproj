@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Xadrez.Pecas\Xadrez.Pecas.csproj" />
     <ProjectReference Include="..\Xadrez.Tabuleiro\Xadrez.Tabuleiro.csproj" />
   </ItemGroup>
 

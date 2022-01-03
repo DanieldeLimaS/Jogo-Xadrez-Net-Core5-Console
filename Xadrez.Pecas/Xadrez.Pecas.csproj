@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Jogo-Xadrez-NetCore5\Jogo-Xadrez-NetCore5.csproj" />
-    <ProjectReference Include="..\Xadrez.Exceptions\Xadrez.Exceptions.csproj" />
-    <ProjectReference Include="..\Xadrez.Logica\Xadrez.Logica.csproj" />
+    <ProjectReference Include="..\Xadrez.Tabuleiro\Xadrez.Tabuleiro.csproj" />
   </ItemGroup>
 
 </Project>
