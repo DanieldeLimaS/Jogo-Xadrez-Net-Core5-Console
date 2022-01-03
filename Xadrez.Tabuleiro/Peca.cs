@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Xadrez.Tabuleiro
+﻿namespace Xadrez.Tabuleiro
 {
-    class Peca
+     public class Peca
     {
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }//pode ser acessa por ela mesma e a subclasse dela
@@ -21,6 +15,7 @@ namespace Xadrez.Tabuleiro
             this.cor = cor;
             this.qtdMovimentos = 0;
         }
+
 
     }
 }

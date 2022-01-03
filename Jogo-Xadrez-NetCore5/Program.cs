@@ -7,9 +7,17 @@ namespace Jogo_Xadrez_NetCore5
     {
         static void Main(string[] args)
         {
-            Posicao posicao = new Posicao(3, 4);
-            Console.WriteLine("Posição:" + posicao);
-            Console.ReadLine();
+            try
+            {
+                Tabuleiro tabuleiro = new Tabuleiro(8, 8);
+                Tela.imprimirTabuleiro(tabuleiro);
+
+                Console.ReadLine();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
