@@ -1,10 +1,10 @@
-﻿using Xadrez.Tabuleiro;
+﻿using Xadrez.TabuleiroXadrez;
 
 namespace Xadrez.Pecas
 {
     public class Bispo : Peca
     {
-        public Bispo(Tabuleiro.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
+        public Bispo(TabuleiroXadrez.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
         {
         }
         public override string ToString()

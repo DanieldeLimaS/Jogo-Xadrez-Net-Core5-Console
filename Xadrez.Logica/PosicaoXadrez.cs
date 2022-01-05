@@ -1,4 +1,4 @@
-﻿using Xadrez.Tabuleiro;
+﻿using Xadrez.TabuleiroXadrez;
 
 namespace Xadrez.Logica
 {
@@ -18,7 +18,7 @@ namespace Xadrez.Logica
         }
         public override string ToString()
         {
-            return $"{coluna}{linha}";
+            return "" + coluna + linha;
         }
     }
 }

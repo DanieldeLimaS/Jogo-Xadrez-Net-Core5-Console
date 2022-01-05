@@ -1,4 +1,6 @@
-﻿namespace Xadrez.Tabuleiro
+﻿using System;
+
+namespace Xadrez.TabuleiroXadrez
 {
     public class Peca
     {
@@ -14,6 +16,9 @@
             this.qtdMovimentos = 0;
         }
 
-
+        public void incrementarQtdMovimentos()
+        {
+            qtdMovimentos++;
+        }
     }
 }

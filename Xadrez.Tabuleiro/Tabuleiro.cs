@@ -1,6 +1,6 @@
 ﻿using Xadrez.Exceptions;
 
-namespace Xadrez.Tabuleiro
+namespace Xadrez.TabuleiroXadrez
 {
     public class Tabuleiro
     {
@@ -44,6 +44,19 @@ namespace Xadrez.Tabuleiro
                 throw new TabuleiroException("Já existe uma peça nessa posição!");
             pecas[posicao.linha, posicao.coluna] = peca;
             peca.posicao = posicao;
+        }
+        /// <summary>
+        /// Método criado para retirar a peça do tabuleiro na posição informada e retorna a peça
+        /// </summary>
+        /// <param name="posicao">representa a posição da peça no tabuleiro</param>
+        public Peca retirarPeca(Posicao posicao)
+        {
+            if (peca(posicao) is null)
+                return null;
+            Peca pecaaux = peca(posicao);
+            pecaaux.posicao = null;
+            pecas[posicao.linha, posicao.coluna] = null;
+            return pecaaux;
         }
 
         /// <summary>

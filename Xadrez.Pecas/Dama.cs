@@ -1,10 +1,10 @@
-﻿using Xadrez.Tabuleiro;
+﻿using Xadrez.TabuleiroXadrez;
 
 namespace Xadrez.Pecas
 {
     public class Dama : Peca
     {
-        public Dama(Tabuleiro.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
+        public Dama(TabuleiroXadrez.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
         {
         }
         public override string ToString()
