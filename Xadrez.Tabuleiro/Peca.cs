@@ -2,7 +2,7 @@
 
 namespace Xadrez.TabuleiroXadrez
 {
-    public class Peca
+    public abstract class Peca
     {
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }//pode ser acessa por ela mesma e a subclasse dela
@@ -20,5 +20,7 @@ namespace Xadrez.TabuleiroXadrez
         {
             qtdMovimentos++;
         }
+        public abstract bool[,] movimentosPossiveis();
+       
     }
 }

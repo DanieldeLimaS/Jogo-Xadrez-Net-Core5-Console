@@ -11,6 +11,7 @@ namespace Jogo_Xadrez_NetCore5
             Console.BackgroundColor = ConsoleColor.DarkMagenta;
             
             Console.WriteLine("SEJA BEM-VINDO AO JOGO DE XADREZ");
+            Console.WriteLine();
             for (int i = 0; i < tabuleiro.linhas; i++)
             {
                 Console.Write(8 - i + " ");
