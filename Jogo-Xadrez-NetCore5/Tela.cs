@@ -9,7 +9,7 @@ namespace Jogo_Xadrez_NetCore5
         public static void imprimirTabuleiro(Tabuleiro tabuleiro)
         {
             Console.BackgroundColor = ConsoleColor.DarkMagenta;
-            
+
             Console.WriteLine("SEJA BEM-VINDO AO JOGO DE XADREZ");
             Console.WriteLine();
             for (int i = 0; i < tabuleiro.linhas; i++)
@@ -17,13 +17,8 @@ namespace Jogo_Xadrez_NetCore5
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tabuleiro.colunas; j++)
                 {
-                    if (tabuleiro.peca(i, j) == null)
-                        Console.Write("- ");
-                    else
-                    {
-                        imprimirPeca(tabuleiro.peca(i, j));
-                        Console.Write(" ");
-                    }
+                    imprimirPeca(tabuleiro.peca(i, j));
+                    Console.Write(" ");
                 }
                 Console.WriteLine();
             }
@@ -41,11 +36,23 @@ namespace Jogo_Xadrez_NetCore5
 
         public static void imprimirPeca(Peca peca)
         {
-                ConsoleColor corConsole = Console.ForegroundColor;
-                Console.ForegroundColor =(peca.cor == Cor.Branca)? ConsoleColor.White: ConsoleColor.Black;
-                Console.Write(peca);
-                Console.ForegroundColor = corConsole;
-
+            if (peca is null)
+                Console.Write("- ");
+            else
+            {
+                if (peca.cor == Cor.Branca)
+                {
+                    Console.Write(peca);
+                }
+                else
+                {
+                    ConsoleColor corConsole = Console.ForegroundColor;
+                    Console.ForegroundColor = (peca.cor == Cor.Branca) ? ConsoleColor.White : ConsoleColor.Black;
+                    Console.Write(peca);
+                    Console.ForegroundColor = corConsole;
+                }
+                Console.Write(" ");
+            }
         }
     }
 }
