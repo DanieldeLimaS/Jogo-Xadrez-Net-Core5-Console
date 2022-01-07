@@ -7,6 +7,12 @@ namespace Xadrez.Pecas
         public Dama(TabuleiroXadrez.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
         {
         }
+
+        public override bool[,] movimentosPossiveis()
+        {
+            return null;
+        }
+
         public override string ToString()
         {
             return "D";

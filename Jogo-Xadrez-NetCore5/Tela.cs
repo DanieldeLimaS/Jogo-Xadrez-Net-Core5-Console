@@ -18,12 +18,35 @@ namespace Jogo_Xadrez_NetCore5
                 for (int j = 0; j < tabuleiro.colunas; j++)
                 {
                     imprimirPeca(tabuleiro.peca(i, j));
-                    Console.Write(" ");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
             Console.WriteLine("__________________");
+        }
+
+        public static void imprimirTabuleiro(Tabuleiro tabuleiro ,bool[,] posicoesPossiveis)
+        {
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+
+            for (int i = 0; i < tabuleiro.linhas; i++)
+            {
+                Console.Write(8 - i + " ");
+                for (int j = 0; j < tabuleiro.colunas; j++)
+                {
+                    if (posicoesPossiveis[i, j]==true)
+                        Console.BackgroundColor = fundoAlterado;
+                    else
+                        Console.BackgroundColor = fundoOriginal;
+                    imprimirPeca(tabuleiro.peca(i, j));
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("  A B C D E F G H");
+            Console.WriteLine("__________________");
+            Console.BackgroundColor = fundoOriginal;
         }
 
         public static PosicaoXadrez lerPosicaoXadrez()

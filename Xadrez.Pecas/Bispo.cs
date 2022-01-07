@@ -7,6 +7,12 @@ namespace Xadrez.Pecas
         public Bispo(TabuleiroXadrez.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
         {
         }
+
+        public override bool[,] movimentosPossiveis()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override string ToString()
         {
             return "B";
