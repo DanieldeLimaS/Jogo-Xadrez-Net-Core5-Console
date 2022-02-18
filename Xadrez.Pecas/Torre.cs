@@ -20,8 +20,8 @@ namespace Xadrez.Pecas
         /// <returns>retorna um boleano informando se pode ou nao mover no tabuleiro</returns>
         private bool podeMover(Posicao posicao)
         {
-            Peca peca = tabuleiro.peca(posicao);
-            return peca == null || peca.cor != this.cor;
+            Peca p = tab.peca(posicao);
+            return p == null || p.cor != cor;
 
         }
 
@@ -31,49 +31,57 @@ namespace Xadrez.Pecas
         /// <returns> retorna a matriz com os valores</returns>
         public override bool[,] movimentosPossiveis()
         {
-            bool[,] matriz = new bool[tabuleiro.linhas, tabuleiro.colunas];
-            Posicao posicao = new Posicao(0, 0);
+            bool[,] mat = new bool[tab.linhas, tab.colunas];
+            Posicao pos = new Posicao(0, 0);
 
-            //movimento para cima
-            posicao.definirValores(posicao.linha - 1, posicao.coluna);
-            while (tabuleiro.posicaoValida(posicao) && podeMover(posicao))
+            // acima
+            pos.definirValores(posicao.linha - 1, posicao.coluna);
+            while (tab.posicaoValida(pos) && podeMover(pos))
             {
-                matriz[posicao.linha, posicao.coluna] = true;
-                if (tabuleiro.peca(posicao) != null && tabuleiro.peca(posicao).cor != cor)
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor)
+                {
                     break;
-                posicao.linha = posicao.linha - 1;
-            }
-            //movimento para baixo
-            posicao.definirValores(posicao.linha + 1, posicao.coluna);
-            while (tabuleiro.posicaoValida(posicao) && podeMover(posicao))
-            {
-                matriz[posicao.linha, posicao.coluna] = true;
-                if (tabuleiro.peca(posicao) != null && tabuleiro.peca(posicao).cor != cor)
-                    break;
-                posicao.linha = posicao.linha + 1;
+                }
+                pos.linha = pos.linha - 1;
             }
 
-            //movimento para direita
-            posicao.definirValores(posicao.linha , posicao.coluna+1);
-            while (tabuleiro.posicaoValida(posicao) && podeMover(posicao))
+            // abaixo
+            pos.definirValores(posicao.linha + 1, posicao.coluna);
+            while (tab.posicaoValida(pos) && podeMover(pos))
             {
-                matriz[posicao.linha, posicao.coluna] = true;
-                if (tabuleiro.peca(posicao) != null && tabuleiro.peca(posicao).cor != cor)
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor)
+                {
                     break;
-                posicao.linha = posicao.linha + 1;
+                }
+                pos.linha = pos.linha + 1;
             }
 
-
-            //movimento para esquerda
-            posicao.definirValores(posicao.linha, posicao.coluna - 1);
-            while (tabuleiro.posicaoValida(posicao) && podeMover(posicao))
+            // direita
+            pos.definirValores(posicao.linha, posicao.coluna + 1);
+            while (tab.posicaoValida(pos) && podeMover(pos))
             {
-                matriz[posicao.linha, posicao.coluna] = true;
-                if (tabuleiro.peca(posicao) != null && tabuleiro.peca(posicao).cor != cor)
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor)
+                {
                     break;
-                posicao.linha = posicao.linha - 1;
+                }
+                pos.coluna = pos.coluna + 1;
             }
-            return matriz;
+
+            // esquerda
+            pos.definirValores(posicao.linha, posicao.coluna - 1);
+            while (tab.posicaoValida(pos) && podeMover(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor)
+                {
+                    break;
+                }
+                pos.coluna = pos.coluna - 1;
+            }
+            return mat;
         }
     }
 }
