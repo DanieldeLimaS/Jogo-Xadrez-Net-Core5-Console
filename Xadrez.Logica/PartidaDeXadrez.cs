@@ -43,7 +43,7 @@ namespace Xadrez.Logica
             //tabuleiro.colocarPeca(new Cavalo(tabuleiro, Cor.Branca), new PosicaoXadrez('B', 1).toPosicao());
             //tabuleiro.colocarPeca(new Bispo(tabuleiro, Cor.Branca), new PosicaoXadrez('C', 1).toPosicao());
             //tabuleiro.colocarPeca(new Dama(tabuleiro, Cor.Branca), new PosicaoXadrez('D', 1).toPosicao());
-            //tabuleiro.colocarPeca(new Rei(tabuleiro, Cor.Branca), new PosicaoXadrez('E', 1).toPosicao());
+            tabuleiro.colocarPeca(new Rei(tabuleiro, Cor.Branca), new PosicaoXadrez('E', 1).toPosicao());
             //tabuleiro.colocarPeca(new Bispo(tabuleiro, Cor.Branca), new PosicaoXadrez('F', 1).toPosicao());
             //tabuleiro.colocarPeca(new Cavalo(tabuleiro, Cor.Branca), new PosicaoXadrez('G', 1).toPosicao());
             tabuleiro.colocarPeca(new Torre(tabuleiro, Cor.Branca), new PosicaoXadrez('H', 1).toPosicao());

@@ -27,16 +27,17 @@ namespace Jogo_Xadrez_NetCore5
 
         public static void imprimirTabuleiro(Tabuleiro tabuleiro ,bool[,] posicoesPossiveis)
         {
-            Console.BackgroundColor = ConsoleColor.DarkMagenta;
-            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoOriginal = ConsoleColor.DarkMagenta;
             ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
 
             for (int i = 0; i < tabuleiro.linhas; i++)
             {
+
+                Console.BackgroundColor = fundoOriginal;
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tabuleiro.colunas; j++)
                 {
-                    if (posicoesPossiveis[i, j]==true)
+                    if (posicoesPossiveis[i, j] == true)
                         Console.BackgroundColor = fundoAlterado;
                     else
                         Console.BackgroundColor = fundoOriginal;
@@ -44,9 +45,9 @@ namespace Jogo_Xadrez_NetCore5
                 }
                 Console.WriteLine();
             }
+            Console.BackgroundColor = fundoOriginal;
             Console.WriteLine("  A B C D E F G H");
             Console.WriteLine("__________________");
-            Console.BackgroundColor = fundoOriginal;
         }
 
         public static PosicaoXadrez lerPosicaoXadrez()
