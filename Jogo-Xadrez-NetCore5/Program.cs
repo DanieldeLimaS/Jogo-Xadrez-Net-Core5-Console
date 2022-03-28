@@ -1,7 +1,6 @@
 ﻿using System;
 using Xadrez.Exceptions;
-using Xadrez.Logica;
-using Xadrez.Pecas;
+using Xadrez.LogicaXadrez;
 using Xadrez.TabuleiroXadrez;
 
 namespace Jogo_Xadrez_NetCore5

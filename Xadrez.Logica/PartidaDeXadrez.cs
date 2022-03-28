@@ -1,7 +1,8 @@
-﻿using Xadrez.Pecas;
+﻿using Xadrez.Logica;
+using Xadrez.Pecas;
 using Xadrez.TabuleiroXadrez;
 
-namespace Xadrez.Logica
+namespace Xadrez.LogicaXadrez
 {
     public class PartidaDeXadrez
     {
