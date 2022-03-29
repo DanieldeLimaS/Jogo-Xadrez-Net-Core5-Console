@@ -7,8 +7,6 @@ namespace Xadrez.Pecas
         public Rei(TabuleiroXadrez.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
         {
         }
-
-
         public override string ToString()
         {
             return "R";
@@ -84,10 +82,6 @@ namespace Xadrez.Pecas
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
-          
-
-
             return mat;
         }
     }
