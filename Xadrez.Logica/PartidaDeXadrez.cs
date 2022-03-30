@@ -40,6 +40,12 @@ namespace Xadrez.LogicaXadrez
             if (!tabuleiro.peca(pos).existeMovimentosPossiveis())
                 throw new TabuleiroException("Não há movimentos possíveis para a peça de origem escolhida!");
         }
+
+        public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
+        {
+            if (!tabuleiro.peca(origem).podeMoverPara(destino))
+                throw new TabuleiroException("Posiçao de destino inválida!");
+        }
         private void mudaJogador()
         {
             if (jogadorAtual == Cor.Branca)
