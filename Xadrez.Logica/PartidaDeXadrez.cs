@@ -1,4 +1,6 @@
-﻿using Xadrez.Logica;
+﻿using System;
+using Xadrez.Exceptions;
+using Xadrez.Logica;
 using Xadrez.Pecas;
 using Xadrez.TabuleiroXadrez;
 
@@ -6,9 +8,9 @@ namespace Xadrez.LogicaXadrez
 {
     public class PartidaDeXadrez
     {
-        public Tabuleiro tabuleiro;
-        private int turno;
-        private Cor jogadorAtual;
+        public Tabuleiro tabuleiro { get; private set; }
+        public int turno { get; private set; }
+        public Cor jogadorAtual { get; private set; }
         public bool terminada { get; private set; }//somente para acesso de leitura
         /// <summary>
         /// Construtor da classe definindo ums parametros necessarios para ser carregados
@@ -21,6 +23,30 @@ namespace Xadrez.LogicaXadrez
             terminada = false;
             colocarPecas();
         }
+
+        public void realizaJogada(Posicao origem, Posicao destino)
+        {
+            executaMovimento(origem, destino);
+            turno++;
+            mudaJogador();
+        }
+
+        public void validarPosicaoDeOrigem(Posicao pos)
+        {
+            if (tabuleiro.peca(pos) == null)
+                throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
+            if (jogadorAtual != tabuleiro.peca(pos).cor)
+                throw new TabuleiroException("A peça de origem escolhida não  é sua!");
+            if (!tabuleiro.peca(pos).existeMovimentosPossiveis())
+                throw new TabuleiroException("Não há movimentos possíveis para a peça de origem escolhida!");
+        }
+        private void mudaJogador()
+        {
+            if (jogadorAtual == Cor.Branca)
+                jogadorAtual = Cor.Preta;
+            else jogadorAtual = Cor.Branca;
+        }
+
         /// <summary>
         /// Realiza o movimento da peça no tabuleiro indo para da posição original para o seu destino informado
         /// </summary>
