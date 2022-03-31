@@ -3,6 +3,11 @@
     public enum Cor
     {
         Branca,
-        Preta
+        Preta,
+        Amarela,
+        Azul,
+        Vermelha,
+        Verde,
+        Laranja
     }
 }

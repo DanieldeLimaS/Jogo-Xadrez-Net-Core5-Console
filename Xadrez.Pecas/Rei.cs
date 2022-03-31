@@ -1,33 +1,34 @@
-﻿using Xadrez.TabuleiroXadrez;
+﻿using Xadrez.LogicaXadrez;
+using Xadrez.TabuleiroXadrez;
 
 namespace Xadrez.Pecas
 {
     public class Rei : Peca
     {
-        public Rei(TabuleiroXadrez.Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
+        private PartidaDeXadrez partida;
+
+        public Rei(Tabuleiro tab, Cor cor, PartidaDeXadrez partida) : base(tab, cor)
         {
+            this.partida = partida;
         }
+
         public override string ToString()
         {
             return "R";
         }
 
-        /// <summary>
-        /// Método que valida se a peça pode ser mover no tabuleiro
-        /// </summary>
-        /// <param name="posicao">representa a posição da peça</param>
-        /// <returns>retorna um boleano informando se pode ou nao mover no tabuleiro</returns>
-        private bool podeMover(Posicao posicao)
+        private bool podeMover(Posicao pos)
         {
-            Peca peca = tab.peca(posicao);
-            return peca == null || peca.cor != cor;
-
+            Peca p = tab.peca(pos);
+            return p == null || p.cor != cor;
         }
 
-        /// <summary>
-        /// Médoto com todos os movimentos que essa peça pode fazer no tabuleiro
-        /// </summary>
-        /// <returns> retorna a matriz com os valores</returns>
+        private bool testeTorreParaRoque(Posicao pos)
+        {
+            Peca p = tab.peca(pos);
+            return p != null && p is Torre && p.cor == cor && p.qteMovimentos == 0;
+        }
+
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tab.linhas, tab.colunas];
@@ -82,6 +83,36 @@ namespace Xadrez.Pecas
             {
                 mat[pos.linha, pos.coluna] = true;
             }
+
+            // #jogadaespecial roque
+            if (qteMovimentos == 0 && !partida.xeque)
+            {
+                // #jogadaespecial roque pequeno
+                Posicao posT1 = new Posicao(posicao.linha, posicao.coluna + 3);
+                if (testeTorreParaRoque(posT1))
+                {
+                    Posicao p1 = new Posicao(posicao.linha, posicao.coluna + 1);
+                    Posicao p2 = new Posicao(posicao.linha, posicao.coluna + 2);
+                    if (tab.peca(p1) == null && tab.peca(p2) == null)
+                    {
+                        mat[posicao.linha, posicao.coluna + 2] = true;
+                    }
+                }
+                // #jogadaespecial roque grande
+                Posicao posT2 = new Posicao(posicao.linha, posicao.coluna - 4);
+                if (testeTorreParaRoque(posT2))
+                {
+                    Posicao p1 = new Posicao(posicao.linha, posicao.coluna - 1);
+                    Posicao p2 = new Posicao(posicao.linha, posicao.coluna - 2);
+                    Posicao p3 = new Posicao(posicao.linha, posicao.coluna - 3);
+                    if (tab.peca(p1) == null && tab.peca(p2) == null && tab.peca(p3) == null)
+                    {
+                        mat[posicao.linha, posicao.coluna - 2] = true;
+                    }
+                }
+            }
+
+
             return mat;
         }
     }

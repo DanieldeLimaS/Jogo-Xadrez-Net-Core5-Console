@@ -1,67 +1,117 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xadrez.Logica;
+using Xadrez.LogicaXadrez;
 using Xadrez.TabuleiroXadrez;
 
 namespace Jogo_Xadrez_NetCore5
 {
     public class Tela
     {
-        public static void imprimirTabuleiro(Tabuleiro tabuleiro)
+        public static void imprimirPartida(PartidaDeXadrez partida)
         {
-            Console.BackgroundColor = ConsoleColor.DarkMagenta;
-
-            Console.WriteLine("SEJA BEM-VINDO AO JOGO DE XADREZ");
+            imprimirTabuleiro(partida.tab);
             Console.WriteLine();
-            for (int i = 0; i < tabuleiro.linhas; i++)
+            imprimirPecasCapturadas(partida);
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + partida.turno);
+            if (!partida.terminada)
             {
-                Console.Write(8 - i + " ");
-                for (int j = 0; j < tabuleiro.colunas; j++)
+                Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+                if (partida.xeque)
                 {
-                    imprimirPeca(tabuleiro.peca(i, j));
+                    Console.WriteLine("XEQUE!");
                 }
-                Console.WriteLine();
             }
-            Console.WriteLine("  A B C D E F G H");
-            Console.WriteLine("__________________");
+            else
+            {
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+            }
         }
 
-        public static void imprimirTabuleiro(Tabuleiro tabuleiro ,bool[,] posicoesPossiveis)
+        public static void imprimirPecasCapturadas(PartidaDeXadrez partida)
         {
-            ConsoleColor fundoOriginal = ConsoleColor.DarkMagenta;
-            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+            Console.WriteLine("Peças capturadas:");
+            Console.Write("Brancas: ");
+            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+            Console.WriteLine();
+            Console.Write("Pretas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
 
-            for (int i = 0; i < tabuleiro.linhas; i++)
+        public static void imprimirConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+            foreach (Peca x in conjunto)
             {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
 
-                Console.BackgroundColor = fundoOriginal;
+        public static void imprimirTabuleiro(Tabuleiro tab)
+        {
+
+            for (int i = 0; i < tab.linhas; i++)
+            {
                 Console.Write(8 - i + " ");
-                for (int j = 0; j < tabuleiro.colunas; j++)
+                for (int j = 0; j < tab.colunas; j++)
                 {
-                    if (posicoesPossiveis[i, j] == true)
-                        Console.BackgroundColor = fundoAlterado;
-                    else
-                        Console.BackgroundColor = fundoOriginal;
-                    imprimirPeca(tabuleiro.peca(i, j));
+                    imprimirPeca(tab.peca(i, j));
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("  a b c d e f g h");
+        }
+
+        public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoePossiveis)
+        {
+
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+
+            for (int i = 0; i < tab.linhas; i++)
+            {
+                Console.Write(8 - i + " ");
+                for (int j = 0; j < tab.colunas; j++)
+                {
+                    if (posicoePossiveis[i, j])
+                    {
+                        Console.BackgroundColor = fundoAlterado;
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = fundoOriginal;
+                    }
+                    imprimirPeca(tab.peca(i, j));
+                    Console.BackgroundColor = fundoOriginal;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("  a b c d e f g h");
             Console.BackgroundColor = fundoOriginal;
-            Console.WriteLine("  A B C D E F G H");
-            Console.WriteLine("__________________");
         }
 
         public static PosicaoXadrez lerPosicaoXadrez()
         {
-            string ler = Console.ReadLine();
-            char coluna = ler[0];
-            int linha = int.Parse(ler[1] + "");
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
             return new PosicaoXadrez(coluna, linha);
         }
 
         public static void imprimirPeca(Peca peca)
         {
-            if (peca is null)
+
+            if (peca == null)
+            {
                 Console.Write("- ");
+            }
             else
             {
                 if (peca.cor == Cor.Branca)
@@ -70,13 +120,14 @@ namespace Jogo_Xadrez_NetCore5
                 }
                 else
                 {
-                    ConsoleColor corConsole = Console.ForegroundColor;
-                    Console.ForegroundColor = (peca.cor == Cor.Branca) ? ConsoleColor.White : ConsoleColor.Black;
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write(peca);
-                    Console.ForegroundColor = corConsole;
+                    Console.ForegroundColor = aux;
                 }
                 Console.Write(" ");
             }
         }
+
     }
 }
